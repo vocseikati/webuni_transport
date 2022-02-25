@@ -1,6 +1,5 @@
 package hu.katka.transport.services;
 
-import hu.katka.transport.dtos.TransportPlanDto;
 import hu.katka.transport.entities.TransportPlan;
 import java.util.List;
 
