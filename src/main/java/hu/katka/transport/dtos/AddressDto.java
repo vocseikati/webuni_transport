@@ -9,7 +9,7 @@ public class AddressDto {
 
   private Long id;
 
-  @NotEmpty(message = "ISO must have a value.")
+  @NotEmpty(message = "Country ISO must have a value.")
   @Size(min=2, max=2)
   private String ISO;
 

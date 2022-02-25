@@ -7,6 +7,14 @@ import hu.katka.transport.services.AddressService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,6 +62,18 @@ public class AddressController {
 //    addressDto.setId(id);
     Address savedAddress = addressService.modifyAddress(addressMapper.dtoToAddress(addressDto), id);
     return addressMapper.addressToDto(savedAddress);
+  }
+
+  @PostMapping("/search")
+  public ResponseEntity<List<AddressDto>> search(@RequestBody AddressDto example,
+                                                @PageableDefault(direction = Sort.Direction.ASC, sort = "id",
+                                     size = Integer.MAX_VALUE) Pageable pageable) {
+    Page<Address> page =
+        addressService.findAddressByExample(addressMapper.dtoToAddress(example), pageable);
+    List<Address> addresses = page.getContent();
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("X-Total-Count", String.valueOf(page.getTotalElements()));
+    return new ResponseEntity(addressMapper.addressesToDto(addresses), headers, HttpStatus.OK);
   }
 
 }
