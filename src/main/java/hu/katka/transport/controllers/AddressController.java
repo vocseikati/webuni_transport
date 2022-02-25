@@ -59,7 +59,6 @@ public class AddressController {
   @PutMapping("{id}")
   public AddressDto modifyAddress(@PathVariable Long id,
                                   @RequestBody @Valid AddressDto addressDto) {
-//    addressDto.setId(id);
     Address savedAddress = addressService.modifyAddress(addressMapper.dtoToAddress(addressDto), id);
     return addressMapper.addressToDto(savedAddress);
   }

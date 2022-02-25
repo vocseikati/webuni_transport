@@ -28,6 +28,8 @@ public class Section {
   @EqualsAndHashCode.Include
   private Long id;
 
+  private int number;
+
   @OneToOne
   private Milestone from;
   @OneToOne

@@ -30,6 +30,6 @@ public class TransportPlan {
   private double income;
 
   @OneToMany(mappedBy = "transportPlan")
-  private List<Section> section;
+  private List<Section> sections;
 
 }

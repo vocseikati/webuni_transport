@@ -19,7 +19,7 @@ public class TransportApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-//    initDbService.deleteDb();
-//    initDbService.insertTestData();
+    initDbService.deleteDb();
+    initDbService.insertTestData();
   }
 }

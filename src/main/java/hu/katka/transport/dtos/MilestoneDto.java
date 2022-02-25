@@ -8,4 +8,5 @@ public class MilestoneDto {
 
   private Long id;
   private LocalDateTime plannedTime;
+  private AddressDto address;
 }
