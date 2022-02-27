@@ -1,5 +1,6 @@
 package hu.katka.transport.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,5 +32,13 @@ public class TransportPlan {
 
   @OneToMany(mappedBy = "transportPlan")
   private List<Section> sections;
+
+  public void addSection(Section section){
+    if (this.sections == null){
+      this.sections = new ArrayList<>();
+    }
+    this.sections.add(section);
+    section.setTransportPlan(this);
+  }
 
 }

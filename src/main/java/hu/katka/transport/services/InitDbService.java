@@ -66,13 +66,17 @@ public class InitDbService {
     Section section4 = createSection(3, milestone7, milestone8);
 
     TransportPlan transportPlan = createTransportPlan(10000);
-    section1.setTransportPlan(transportPlan);
-    section2.setTransportPlan(transportPlan);
-    section3.setTransportPlan(transportPlan);
-    section4.setTransportPlan(transportPlan);
-    List<Section> sections = List.of(section1, section2, section3, section4);
-
-    transportPlan.setSections(sections);
+    transportPlan.addSection(section1);
+    transportPlan.addSection(section2);
+    transportPlan.addSection(section3);
+    transportPlan.addSection(section4);
+//    section1.setTransportPlan(transportPlan);
+//    section2.setTransportPlan(transportPlan);
+//    section3.setTransportPlan(transportPlan);
+//    section4.setTransportPlan(transportPlan);
+//    List<Section> sections = List.of(section1, section2, section3, section4);
+//
+//    transportPlan.setSections(sections);
   }
 
   private Address createAddress(String ISO, String city, String street, String zipCode,
