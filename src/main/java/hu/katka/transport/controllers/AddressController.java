@@ -15,6 +15,7 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,17 +47,20 @@ public class AddressController {
   }
 
   @PostMapping
+  @PreAuthorize("hasAuthority('AddressManager')")
   public AddressDto createAddress(@RequestBody @Valid AddressDto addressDto) {
     Address address = addressService.addAddress(addressMapper.dtoToAddress(addressDto));
     return addressMapper.addressToDto(address);
   }
 
   @DeleteMapping("{id}")
+  @PreAuthorize("hasAuthority('AddressManager')")
   public void deleteAddress(@PathVariable Long id) {
     addressService.deleteAddress(id);
   }
 
   @PutMapping("{id}")
+  @PreAuthorize("hasAuthority('AddressManager')")
   public AddressDto modifyAddress(@PathVariable Long id,
                                   @RequestBody @Valid AddressDto addressDto) {
     Address savedAddress = addressService.modifyAddress(addressMapper.dtoToAddress(addressDto), id);

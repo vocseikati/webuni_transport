@@ -1,6 +1,6 @@
 package hu.katka.transport.configurations;
 
-import java.util.TreeMap;
+import java.time.Duration;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 public class TransportConfigurationProperties {
 
   Reducing reducing = new Reducing();
+
+  JwtData jwtData = new JwtData();
 
   @Data
   public static class Reducing {
@@ -23,4 +25,14 @@ public class TransportConfigurationProperties {
     private Integer percent3;
 
   }
+
+  @Data
+  public static class JwtData {
+    private String issuer;
+    private String secret;
+    private String alg;
+    private Duration duration;
+  }
+
+
 }
